@@ -52,7 +52,7 @@ def setRR(num_divisions, block_num):
     print(f"Row: {row}, Col: {col}")
 
     # Set the render region
-    scene.render.border_min_x = div_size 
-    scene.render.border_min_y = div_size
-    scene.render.border_max_x = 0
-    scene.render.border_max_y = 0
+    scene.render.border_min_x = div_size * row
+    scene.render.border_min_y = div_size * col
+    scene.render.border_max_x = div_size * (row+1)
+    scene.render.border_max_y = div_size * (col+1)

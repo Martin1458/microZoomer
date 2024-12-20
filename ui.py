@@ -24,7 +24,10 @@ class VIEW3D_PT_my_custom_panel(bpy.types.Panel):  # class naming convention ‘
         row = layout.row()
         row.prop(context.scene, "block_num_prop")
         row = layout.row()
-        row.operator("object.print_div")
+        row.operator("object.print_div")  
+        row = layout.row()
+        row.operator("object.select_rr")  
+              
 
 def register():
     bpy.utils.register_class(VIEW3D_PT_my_custom_panel)
