@@ -22,20 +22,31 @@ class VIEW3D_PT_my_custom_panel(bpy.types.Panel):  # class naming convention ‘
         row = layout.row()
         row.prop(context.scene, "div_num_prop")
         row = layout.row()
+        row.prop(context.scene, "block_num_prop")
+        row = layout.row()
         row.operator("object.print_div")
 
 def register():
     bpy.utils.register_class(VIEW3D_PT_my_custom_panel)
 
-    bpy.types.Scene.div_num_prop = bpy.props.StringProperty \
+    bpy.types.Scene.div_num_prop = bpy.props.IntProperty \
       (
         name = "Division num",
         description = "The number of divisions of the render region",
-        default = "2"
+        default = 1,
+        soft_min = 1
       )
-
+    
+    bpy.types.Scene.block_num_prop = bpy.props.IntProperty \
+      (
+        name = "Block num",
+        description = "The number of the block to render",
+        default = 1,
+        soft_min = 1
+      )
 def unregister():
     bpy.utils.unregister_class(VIEW3D_PT_my_custom_panel)
 
     bpy.types.Scene.div_num_prop
+    bpy.types.Scene.block_num_prop
 

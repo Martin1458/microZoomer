@@ -27,6 +27,8 @@ class PrintDiv(bpy.types.Operator):
 
     def execute(self, context):
         print(f"The value of Div: {context.scene.div_num_prop}")
+        print(f"The value of Block: {context.scene.block_num_prop}")
+        editRR.setRR(context.scene.div_num_prop, context.scene.block_num_prop)
         return {'FINISHED'}
 
 
