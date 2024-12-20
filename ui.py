@@ -10,16 +10,32 @@ class VIEW3D_PT_my_custom_panel(bpy.types.Panel):  # class naming convention ‘
     bl_label = "My Custom Panel label"  # found at the top of the Panel
 
     def draw(self, context):
+        layout = self.layout
         """define the layout of the panel"""
-        row = self.layout.row()
-        row.operator("mesh.primitive_cube_add", text="Add Cukkbe")
-        row = self.layout.row()
+        row = layout.row()
+        row.operator("mesh.primitive_cube_add", text="Add Cukkkkbe")
+        row = layout.row()
         row.operator("object.simple_operator")
+        # add a number input
+        row = layout.row()
+        row.label(text="Number of divisions:")
+        row = layout.row()
+        row.prop(context.scene, "div_num_prop")
+        row = layout.row()
+        row.operator("object.print_div")
 
 def register():
     bpy.utils.register_class(VIEW3D_PT_my_custom_panel)
 
+    bpy.types.Scene.div_num_prop = bpy.props.StringProperty \
+      (
+        name = "Division num",
+        description = "The number of divisions of the render region",
+        default = "2"
+      )
 
 def unregister():
     bpy.utils.unregister_class(VIEW3D_PT_my_custom_panel)
+
+    bpy.types.Scene.div_num_prop
 

@@ -16,6 +16,20 @@ class SimpleOperator(bpy.types.Operator):
         editRR.editRRfunc()
         return {'FINISHED'}
 
+class PrintDiv(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.print_div"
+    bl_label = "Print the div"
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        print(f"The value of Div: {context.scene.div_num_prop}")
+        return {'FINISHED'}
+
+
 
 def menu_func(self, context):
     self.layout.operator(SimpleOperator.bl_idname, text=SimpleOperator.bl_label)
@@ -23,9 +37,11 @@ def menu_func(self, context):
 
 def register():
     bpy.utils.register_class(SimpleOperator)
+    bpy.utils.register_class(PrintDiv)
     bpy.types.VIEW3D_MT_object.append(menu_func)
 
 
 def unregister():
     bpy.utils.unregister_class(SimpleOperator)
+    bpy.utils.unregister_class(PrintDiv)
     bpy.types.VIEW3D_MT_object.remove(menu_func)
