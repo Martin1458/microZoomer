@@ -28,7 +28,7 @@ def setRR(num_divisions, block_num):
     # Check if the number of divisions is valid
     if num_divisions < 1:
         print("The number of divisions must be at least 1")
-        return 0
+        return 0, 0
     
     # Calculate the division size
     div_size = 1 / (num_divisions+1)
@@ -56,3 +56,5 @@ def setRR(num_divisions, block_num):
     scene.render.border_min_y = div_size * col
     scene.render.border_max_x = div_size * (row+1)
     scene.render.border_max_y = div_size * (col+1)
+
+    return row, col
