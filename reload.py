@@ -1,7 +1,4 @@
-
-#! Run this script in Blender's Python console to reload the addon.
-### Reloads an addon in Blender without restarting the application.
-import bpy # type: ignore
+import bpy
 import importlib
 import os
 import sys
@@ -13,6 +10,7 @@ ADDON_NAME = "microZoomer"  # Your addon folder/module name
 # List of additional files (without .py extension) to reload
 FILES_TO_RELOAD = [
     "editRR",  # Add other files here, e.g., "other_module"
+    "image_comb",
 ]
 
 def force_reload_addon():
@@ -38,7 +36,7 @@ def force_reload_addon():
     for module_name in to_reload:
         if module_name in sys.modules:
             module = sys.modules[module_name]
-            if hasattr(module, "unregister"):
+            if hasattr(module, "unregister") and module_name == "microZoomer":
                 try:
                     module.unregister()
                     print(f"Unregistered module: {module_name}")

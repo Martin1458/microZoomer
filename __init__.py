@@ -11,16 +11,14 @@ bl_info = {
     "warning": "",
     "category": "Generic",
 }
+from . import operators
+from . import ui
 
 def register():
-    from . import operators
-    from . import ui
     operators.register()
     ui.register()
 
 def unregister():
-    from . import operators
-    from . import ui
     operators.unregister()
     ui.unregister()
 
